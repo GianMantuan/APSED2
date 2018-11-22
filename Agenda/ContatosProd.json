@@ -1,0 +1,29 @@
+{
+    "contatos": [
+        {
+            "Nome":"Adriano",
+            "Endereco":"Rua Brasil",
+            "Telefone":"(44) 3526-9956"
+        },
+        {
+            "Nome":"Adamastor",
+            "Endereco":"Avenida Capitao Indio Bandeira",
+            "Telefone":"(44) 98574-5236"
+        },
+        {
+            "Nome":"Joao Pedro",
+            "Endereco":"Rua Regina Fabris Trivelato",
+            "Telefone":"(44) 3025-9689"
+        },
+        {
+            "Nome":"Joao Paulo",
+            "Endereco":"Rua Rocha Pombo",
+            "Telefone":"(44) 99785-5623"
+        },
+        {
+            "Nome":"Jose",
+            "Endereco":"Rua Pitanga",
+            "Telefone":"(44) 3525-6698"
+        }
+    ]
+}
