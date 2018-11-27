@@ -3,6 +3,9 @@ const Node = require('./Node')
 
 class RadixTree {
     constructor(dict = []){
+        console.log('------------------------')
+        console.log(`Arquivo recebido`)
+        console.log('------------------------')
         this._dict = dict
         this.root = new Node();
         
@@ -15,7 +18,10 @@ class RadixTree {
         for (let key in dict) {
             let tokens = dict[key]            
 
-            tokens.forEach(token => {                
+            console.log(`Inserindo cada Palavra/Objeto: `)             
+
+            tokens.forEach(token => {
+                console.log(`${token}`)             
                 this._add(token)
             });
         }
@@ -27,9 +33,17 @@ class RadixTree {
         let length_B = (strB || '').length
         let total_len = length_A < length_B ? length_A : length_B
         let index = 0
+
+        console.log('------------------------')        
+        console.log(`Buscando diferença`)        
+
         for (; index < total_len ; index++){
+
+            console.log(`${strA[index]} | ${strB[index]}`)
+
             let str_A = strA[index]
             let str_B = strB[index]
+
             if(str_A !== str_B) {
                 break
             }
@@ -49,10 +63,17 @@ class RadixTree {
         // Após receber um nó pai ou a raiz ele verifica seus vertices para encontrar similaridade e diferença
 
         for (let edge of node.edges) {
+            console.log('------------------------')        
+            console.log(`Não é a primeira palavra`)
+                    
             let diff_index = this._diff(val, edge.label)
 
             if (diff_index > 0) {
+                console.log(diff_index)
                 if (diff_index === edge.label.length) {
+                    console.log("MAOE")
+                    console.log(val.slice(diff_index))
+                    console.log(edge.targetNode)
                     this._add(val.slice(diff_index), edge.targetNode)
                     return
                 }
@@ -66,23 +87,43 @@ class RadixTree {
                     new Edge(val.slice(diff_index), new Node([str]))
                 ]
 
+                console.log('------------------------')
+                console.log(`Quando encontrado diferenças, separa em dois vertices`)
+                console.log(edges)        
+
+                
+
                 let new_node = new Node()
                 new_node.addEdges(edges)
 
                 node.removeEdge(edge) // Remove o vértice antigo
                 node.addEdge(new Edge(val.slice(0, diff_index), new_node)) // Adiciona o novo array de vertices
+
+                console.log('------------------------')
+                console.log(`Remove o nó existence e adiciona o novo array de vertices`)
+                console.log(this.root)
                 return
             }
         }
         // Caso nao tenha nenhuma similaridade com qualquer um dos vertices ja adicionados na arvore
-        // ele simplesmente cria um novo vertice 
+        // ele simplesmente cria um novo vertice        
+        
+        console.log('------------------------')        
+        console.log(`Primeira palavra ${val}`)
+
         let edge = new Edge(val, new Node([str]))
         node.addEdge(edge)
+
+        console.log(`Raiz depois de inserir`)
+        console.log(this.root)
+        console.log('------------------------')        
+
 
         // Para facilitar a impressao de dados, o valor final da palavra/objeto é adicionado em um atributo do nó final
         if (node.isLeaf()) {
             node.addEdge('', new Node(node.targetNode.str))
         }
+
         return
     }
 
