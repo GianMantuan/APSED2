@@ -58,7 +58,6 @@ class RadixTree {
         if (typeof str === 'object') {
             val = str.Nome
         }
-
         let node = parent || this.root
         // Após receber um nó pai ou a raiz ele verifica seus vertices para encontrar similaridade e diferença
 
@@ -71,9 +70,6 @@ class RadixTree {
             if (diff_index > 0) {
                 console.log(diff_index)
                 if (diff_index === edge.label.length) {
-                    console.log("MAOE")
-                    console.log(val.slice(diff_index))
-                    console.log(edge.targetNode)
                     this._add(val.slice(diff_index), edge.targetNode)
                     return
                 }
