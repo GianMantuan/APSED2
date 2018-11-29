@@ -1,0 +1,15 @@
+{
+  "name": "Prefixo",
+  "version": "1.0.0",
+  "description": "Trabalho da matéria de Algoritmo e Estrutura de Dados 2 utilizando RadixTree para busca",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^12.0.5"
+  }
+}

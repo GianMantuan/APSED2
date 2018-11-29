@@ -1,6 +1,6 @@
 const Edge = require('./Edge')
 const Node = require('./Node')
-
+const SilabDict = require('../Ends With/SilabDict.json')
 class RadixTree {
     constructor(dict = []){
         console.log('------------------------')
@@ -15,6 +15,7 @@ class RadixTree {
 
     build(dict){
         //Para a chave do array ele itera sobre cada index chamando o metodo _add
+
         for (let key in dict) {
             let tokens = dict[key]            
 
@@ -52,6 +53,7 @@ class RadixTree {
     }
 
     _add(str, parent) {
+        // if (reversed) str = revert(str)
         // Para diferenciar se é String ou Objeto, ele verifica o tipo do item que esta sendo passado
         // A string entraria como parte do Dicionário e o Objeto como parte da Agenda
         let val = str
@@ -123,22 +125,48 @@ class RadixTree {
         return
     }
 
-    find(prefix, parent) {
+    find(prefix, reversed, parent) {
         // Para a busca, ele verifica se o prefixo passado tem alguma similaridade com o algum dos vertices
         // descendo a arvoce até encontrar o valor final armazenado no atributo 'vals'
         let node = parent || this.root
+        let rev;
 
         if (node.isLeaf() || prefix === "") {
+            if(reversed) {
+                let rev = this.reverseSTR(node.vals)
+                return rev
+            }
+            console.log(node.vals)
             return node.vals
         }
         for (let edge of node.edges) {
             let diff_index = this._diff(prefix, edge.label)
 
             if (diff_index > 0) {
-                return this.find(prefix.slice(diff_index), edge.targetNode)
+                return this.find(prefix.slice(diff_index), true, edge.targetNode)
             }
         }
         return []
+    }
+
+    reverseSTR(str){
+        let match = []
+        str.map(key => {
+            let silabs = key.split('').reverse().join('')
+            match.push(this.matchReverse(silabs))
+            return
+        })
+        return match
+    }
+
+    matchReverse(str) {
+        let retorno;
+        Object.keys(SilabDict).map(key => {
+            if (str == key) {
+                retorno = SilabDict[key]
+            }
+        })
+        return retorno
     }
 }
 
