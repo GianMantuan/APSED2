@@ -1,4 +1,4 @@
-<h1>Prefixo</h1>
+<h1>Ends With</h1>
 <p>
     Um programa em Node.js que recebe um arquivo de palavras em formato .json e compara os finais das trings usando Radix Tree.<br>
     O formato do arquivo deve ser:<br>
