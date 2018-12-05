@@ -1,9 +1,4 @@
-module.exports = function reverseString(dict){
-    let reversed = [];
-    Object.keys(dict).map(key => {
-        reversed.push(dict[key].reverse().join(""))
-        return
-    })
-    return reversed
+module.exports = function reverseString(str){
+    return str.split("").reverse().join("")
 }
 
