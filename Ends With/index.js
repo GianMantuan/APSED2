@@ -11,7 +11,7 @@ const argv = require('yargs')
 const tree = new RadixTree(dict, true)
 const matchs = tree.find(argv.s, true)
 
-console.log(`Prefixo ${argv.s}:`)
+console.log(`Sufixo ${argv.s}:`)
 console.log(
     matchs.map(match => 
         reverseStr(match)
